@@ -158,3 +158,52 @@ var maximumWealth3 = function(accounts) {
     }
     return maximumWealth;
 }; //this is the basic solution, only using for loop
+
+//Task 4
+//Fizz Buzz
+//Given an integer n, return a string array answer (1-indexed) where:
+//answer[i] == "FizzBuzz" if i is divisible by 3 and 5, answer[i] == "Fizz" if i is divisible by 3, answer[i] == "Buzz" if i is divisible by 5, answer[i] == i (as a string) if none of that conditions before are true.
+//Input: n = 3, Output: ["1","2","Fizz"]
+//Input: n = 5, Output: ["1","2","Fizz","4","Buzz"]
+//Input: n = 15, Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+//My Solution
+var fizzBuzz = function(n) {
+    let fizzBuzzAnswer = []; //make empty array as answer or result
+    for (let i = 1; i <= n; i++) {
+        let valueInIndex = ""; //make empty string variable to receive concatination 
+        if (i % 3 === 0) { //check if i is divisible by 3?
+            valueInIndex = valueInIndex + "Fizz";
+        }
+        if (i % 5 === 0) { //check if i is divisible by 5?
+            valueInIndex = valueInIndex + "Buzz";
+        }
+        if (i % 3 !== 0 && i % 5 !== 0) { //check if i isn't divisible by 3 and i isn't divisible by 3 5?
+            valueInIndex = i.toString(); //insert value i as a string to valueInIndex 
+        }
+        fizzBuzzAnswer.push(valueInIndex); //puh valueInIndex to the final array as aswer or result
+    }
+    return fizzBuzzAnswer; 
+};
+//Pro Solution:
+//1
+const fizzBuzz1 = (n) => {
+    let fizzBuzzAnswer = []
+    for (let i = 1; i <= n; i++){
+        let string = '';
+        if (i % 3 === 0) string += 'Fizz';
+        if (i % 5 === 0) string += 'Buzz';
+        if (string === '') string += i;
+        fizzBuzzAnswer.push(string);
+    }
+    return fizzBuzzAnswer;
+}; //the concept is the same with My Solution, but the the if statement is maded in one line
+//2
+var fizzBuzz2 = function(n) {
+    return Array.from({length: n}, (_, i) => { //Array.from(), menerima 2 parameter (ke-1 object {length: n} untuk menentukan panjang array dibuat, ke-2 callback untuk proses pengisian value-nya) dan akan me-return array baru
+        i += 1; //nilai i index ini akan menjadi value-nya, tapi karena i mulai dari 0, maka kita tambah dengan 1
+        return i % 3 === 0 && i % 5 === 0 ? 'FizzBuzz' //langsung operator ternary panjang untuk menentukan value di current index i
+            : i % 3 === 0 ? 'Fizz' 
+            : i % 5 === 0 ? 'Buzz'
+            : `${i}`; //untuk bikin variable i yg type-nya integer dijadikan/dianggap sebagai string pakai `${<variable>}`
+    });
+};
