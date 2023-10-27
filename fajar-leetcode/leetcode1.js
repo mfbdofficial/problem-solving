@@ -166,7 +166,7 @@ var maximumWealth3 = function(accounts) {
 //Input: n = 3, Output: ["1","2","Fizz"]
 //Input: n = 5, Output: ["1","2","Fizz","4","Buzz"]
 //Input: n = 15, Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
-//My Solution
+//My Solution:
 var fizzBuzz = function(n) {
     let fizzBuzzAnswer = []; //make empty array as answer or result
     for (let i = 1; i <= n; i++) {
@@ -187,16 +187,16 @@ var fizzBuzz = function(n) {
 //Pro Solution:
 //1
 const fizzBuzz1 = (n) => {
-    let fizzBuzzAnswer = []
+    let fizzBuzzAnswer = [];
     for (let i = 1; i <= n; i++){
         let string = '';
         if (i % 3 === 0) string += 'Fizz';
         if (i % 5 === 0) string += 'Buzz';
-        if (string === '') string += i;
+        if (string === '') string += i.toString();
         fizzBuzzAnswer.push(string);
     }
     return fizzBuzzAnswer;
-}; //the concept is the same with My Solution, but the the if statement is maded in one line
+}; //the concept is the same with My Solution, but the the if statement is maded in one line and for the last if condition we checked is the string still empty string? ("") instead
 //2
 var fizzBuzz2 = function(n) {
     return Array.from({length: n}, (_, i) => { //Array.from(), menerima 2 parameter (ke-1 object {length: n} untuk menentukan panjang array dibuat, ke-2 callback untuk proses pengisian value-nya) dan akan me-return array baru
@@ -207,3 +207,16 @@ var fizzBuzz2 = function(n) {
             : `${i}`; //untuk bikin variable i yg type-nya integer dijadikan/dianggap sebagai string pakai `${<variable>}`
     });
 };
+//3
+var fizzBuzz3 = function(n) {
+    let fizzBuzzAnswer = [];
+    let i = 1;
+    while (i <= n) { //try to use while (instead for loop)
+        if (i % 3 == 0 & i % 5 == 0) fizzBuzzAnswer.push("FizzBuzz");
+        else if (i % 3 == 0) fizzBuzzAnswer.push("Fizz");
+        else if (i % 5 == 0) fizzBuzzAnswer.push("Buzz");
+        else fizzBuzzAnswer.push(i.toString()); //check with if condition, just push the string that you wanted, don't have to do concatination
+        i++;
+    }
+    return fizzBuzzAnswer;
+}; //this way is good, but in My Solution is also good (both are correct), it depends on which one you prefer

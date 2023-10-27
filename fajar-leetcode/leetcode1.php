@@ -104,3 +104,42 @@ function maximumWealth4($accounts) {
         return $personWealth;
     }, $accounts));
 } //the concept is same with Pro Solution 3, but for the array_sum() callback part, we don't use built-in function (we use manual way instead)
+
+//Task 4
+//Fizz Buzz
+//Given an integer n, return a string array answer (1-indexed) where:
+//answer[i] == "FizzBuzz" if i is divisible by 3 and 5, answer[i] == "Fizz" if i is divisible by 3, answer[i] == "Buzz" if i is divisible by 5, answer[i] == i (as a string) if none of that conditions before are true.
+//Input: n = 3, Output: ["1","2","Fizz"]
+//Input: n = 5, Output: ["1","2","Fizz","4","Buzz"]
+//Input: n = 15, Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+//My Solution:
+function fizzBuzz($n) {
+    $fizzBuzzAnswer = [];
+    for ($i = 1; $i <= $n; $i++) {
+        $valueInIndex = "";
+        if ($i % 3 === 0) {
+            $valueInIndex = $valueInIndex . "Fizz";
+        }
+        if ($i % 5 === 0) {
+            $valueInIndex = $valueInIndex . "Buzz";
+        }
+        if ($i % 3 !== 0 && $i % 5 !== 0) {
+            $valueInIndex = strval($i);
+        }  
+        $fizzBuzzAnswer[] = $valueInIndex;
+    }
+    return $fizzBuzzAnswer;
+}
+//Pro Solution:
+//1
+function fizzBuzz1($n) {
+    $fizzBuzzAnswer = [];
+    for ($i = 1; $i <= $n; $i++) {
+        $valueInIndex = "";
+        if ($i % 3 === 0) $valueInIndex .= "Fizz";
+        if ($i % 5 === 0) $valueInIndex .= "Buzz";
+        if ($valueInIndex === "") $valueInIndex = strval($i);
+        $fizzBuzzAnswer[] = $valueInIndex;
+    }
+    return $fizzBuzzAnswer;
+} //the concept is the same with My Solution, but the the if statement is maded in one line and for the last if condition we checked is the string still empty string? ("") instead

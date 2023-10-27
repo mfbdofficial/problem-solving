@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+//import "fmt"
+//di atas ini bentuk kalo import hanya 1, di bawah ini kalo import lebih dari 1
+import (
+	"fmt" 
+	"strconv"
+)
 
 func main() {
 	//Task 2
@@ -15,7 +20,7 @@ func main() {
 		var sum int
 		for i := 0; i < len(nums); i++ {
 			sum = sum + nums[i]
-			runningResult = append(runningSum, sum)
+			runningResult = append(runningResult, sum)
 		}
 		return runningResult
 	}
@@ -92,4 +97,33 @@ func main() {
 		}
 		return maximumWealth
 	} //this is the basic solution, only using for loop
+
+	//Task 4
+	//Fizz Buzz
+	//Given an integer n, return a string array answer (1-indexed) where:
+	//answer[i] == "FizzBuzz" if i is divisible by 3 and 5, answer[i] == "Fizz" if i is divisible by 3, answer[i] == "Buzz" if i is divisible by 5, answer[i] == i (as a string) if none of that conditions before are true.
+	//Input: n = 3, Output: ["1","2","Fizz"]
+	//Input: n = 5, Output: ["1","2","Fizz","4","Buzz"]
+	//Input: n = 15, Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+	//My Solution:
+	func fizzBuzz(n int) []string {
+		var fizzBuzzAnswer []string
+		for i := 1; i <= n; i++ {
+			valueInIndex := ""
+			if i % 3 == 0 {
+				valueInIndex = valueInIndex + "Fizz"
+			}
+			if i % 5 == 0 {
+				valueInIndex = valueInIndex + "Buzz"
+			}
+			if i % 3 != 0 && i % 5 != 0 { //sebelumnya di bawah pakai string(i), tapi malah menghasilnya "\u0001", "\u0002", "\u0003" dan seterusnya
+				valueInIndex = strconv.Itoa(i) //harus import "strconv" untuk memakai strconv.Itoa() untuk ubah i number menjadi string
+			}
+			fizzBuzzAnswer = append(fizzBuzzAnswer, valueInIndex)
+		}
+		return fizzBuzzAnswer
+	}
+	//Pro Solution:
+	//1
+	
 }
